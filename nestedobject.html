@@ -1,0 +1,107 @@
+<html>
+<center>
+    <table border="6">
+        <tr>
+            <th>index</td>
+            <th>city name</td>
+        </tr>
+        <tbody id="objectf"></tbody>
+    </table>
+
+</center>
+
+<script type="text/javascript">
+
+    var record = [
+        {
+            country: [
+                {
+                    name: "india",
+                    state: [
+                        {
+                            name: "gujrat",
+                            district: [
+                                {
+                                    name: "surat",
+                                    city: [
+                                        {
+                                            name: ["simada", "amroli", "varachha", "vesu", "adajan"]
+                                        },
+                                    ],
+                                },
+                                {
+                                    name: "botad",
+                                    city:
+                                    {
+                                        name: ["paliyad", "barvala", "botad", "lathidad", "ningala"]
+                                    },
+                                },
+                                {
+                                    name: "rajkot",
+                                    city:
+                                    {
+                                        name: ["gondal", "gondal2", "gondal3"]
+                                    },
+                                },
+                            ],
+                        },
+                        {
+                            name: "maharastra",
+                            district: [
+                                {
+                                    name: "mumbai",
+                                    city: [
+                                        {
+                                            name: ["central", "gorgaun", "andhari", "newmumbai"]
+                                        },
+                                    ],
+                                },
+                                {
+                                    name: "pune",
+                                    city:
+                                    {
+                                        name: ["chinchvad1", "chinchvad2", "chinchvad3"]
+                                    },
+                                },
+                                {
+                                    name: "bhopal",
+                                    city:
+                                    {
+                                        name: ["bhopal1", "bhopal2", "bhopal3"]
+                                    },
+                                },
+                            ],
+                        },
+                    ],
+                },
+            ],
+        },
+    ];
+    tbl = "";
+    cnt = 0;
+    record[0].country[0].state.map((val) => {
+        val.district[0].city.map((ite) => {
+            console.table(ite);
+            cnt++;
+            return tbl += `
+                            <tr>
+                                <td>${cnt}</td>
+                                <td>${val.name}</td>
+                                <td>${ite.name}</td>    
+                            </tr>
+                          `
+        });
+    });
+    document.getElementById("objectf").innerHTML = tbl;
+
+    var i, j, k;
+    cnt = 0;
+    tbl = "";
+    for (i = 0; i < record[0].country[0].state.length; i++) {
+        for (j = 0; j < record[0].country[0].state[0].district[0].city.length; j++) {
+            console.table(record[0].country[0].state[0].district[0].city[0].name);
+        }
+    }
+</script>
+
+</html>

@@ -1,0 +1,93 @@
+<html>
+    <h2 align="center">Add user data record</h2>
+<table align="center" border="6">
+    <thead>
+        <tr>
+            <td>S.Name </td>
+            <td><input type="text" id="sname"></td>
+        </tr>
+        <tr>
+            <td>Name </td>
+            <td><input type="text" id="name"></td>
+        </tr>
+        <tr>
+            <td>Phone </td>
+            <td><input type="number" id="phone"></td>
+        </tr>
+        <tr>
+            <td>Submit Form </td>
+            <td align="center"><button onclick="saveRecord()">Submit</button></td>
+        </tr>
+    </thead>
+</table>
+<h2 align="center">All record</h2>
+<table align="center" border="6">
+    <thead>
+        <tr>
+            <td>index</td>
+            <td>S.Nmae</td>
+            <td>Name</td>
+            <td>Phone</td>
+        </tr>
+    </thead>
+    <tbody id="allrecord"></tbody>
+</table>
+
+<script type="text/javascript">
+    let record = [];
+    const viewRecord = () => {
+        var tbl = "";
+        var cnt = 0;
+        record.map((val) => {
+            cnt++;
+            return (
+                tbl += `
+                            <tr>
+                                <td>${val.id}</td>
+                                <td>${val.sname}</td>
+                                <td>${val.name}</td>
+                                <td>${val.phone}</td>
+                                <td>
+                                    <button onclick="deletRecord(${val.id})">Delete</button>
+                                </td>
+                            </tr>
+                        `
+            )
+        });
+        document.getElementById("allrecord").innerHTML = tbl;
+    }
+    viewRecord();
+
+    // add in record
+    const saveRecord = () => {
+        let usersname = document.getElementById("sname").value;
+        let username = document.getElementById("name").value;
+        let userphone = document.getElementById("phone").value;
+        let id = Math.floor(Math.random() * 100000);
+
+        let obj = {
+            id: id,
+            sname: usersname,
+            name: username,
+            phone: userphone
+        }
+        record.push(obj);
+        alert("record aded successfully...");
+        viewRecord();
+        document.getElementById("sname").value = "";
+        document.getElementById("name").value = "";
+        document.getElementById("phone").value = "";
+    }
+
+    // dilet in record
+    const deletRecord = (id) => {
+        var delerR = record.filter((val) => {
+            return val.id != id;
+        });
+        record = delerR;
+        alert("Record delete successfully...");
+        viewRecord();
+    }
+</script>
+
+</html>
